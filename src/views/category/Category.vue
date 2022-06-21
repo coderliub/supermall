@@ -1,5 +1,6 @@
 <template>
-  <div class="wrapper" ref = 'aaa'>
+  <div class="wrapper" ref = 'aaaa'>
+    <div>
 <!--    1.无论click：false，button都可以点击-->
     <button @click="btnClick">按钮</button>
 
@@ -107,6 +108,7 @@
       <li>分类列表99</li>
       <li>分类列表100</li>
     </ul>
+    </div>
   </div>
 </template>
 
@@ -117,7 +119,7 @@ export default {
   name: "Category",
   data() {
     return {
-      scroll:null
+      scroll: null
     }
   },
   created() {
@@ -132,13 +134,13 @@ export default {
     // console.log(this.$refs.aaa);
     // console.log(document.querySelector('.wrapper'));
 
-    this.scroll = new BScroll(document.querySelector('.wrapper'),{
+    this.scroll = new BScroll(this.$refs.aaaa,{
       probeType: 3,
       pullUpLoad: true,
-      click: ture
+      // click: ture
     })
     this.scroll.on('scroll',(position) => {
-      console.log(position);
+      // console.log(position);
     })
 
     this.scroll.on('pullingUp', () => {
