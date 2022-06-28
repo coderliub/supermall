@@ -37,6 +37,7 @@ import BackTop from "@/components/content/backTop/BackTop";
 
 import {getHomeMultidata,getHomeGoods} from "@/network/home";
 import {debounce} from "@/common/utils";
+import {backTopMixin} from "@/common/mixin";
 
 export default {
   name: "Home",
@@ -50,6 +51,7 @@ export default {
     Scroll,
     BackTop
   },
+  mixins: [backTopMixin],
   data() {
     return {
       banners:[],
@@ -59,8 +61,8 @@ export default {
         'new': {page:0,list:[]},
         'sell': {page:0,list:[]},
       },
+      showGoods: [],
       currentType: 'pop',
-      isShowBackTop: false,
       tabOffsetTop: 0,
       isTabFixed: false,
       saveY: 0,
@@ -68,9 +70,9 @@ export default {
     }
   },
   computed:{
-    showGoods() {
-      return this.goods[this.currentType].list
-    }
+    // showGoods() {
+    //   return this.goods[this.currentType].list
+    // }
   },
   destroyed() {
     console.log('home destroyed');
@@ -97,6 +99,8 @@ export default {
     this.getHomeGoods('pop')
     this.getHomeGoods('new')
     this.getHomeGoods('sell')
+
+
   },
   mounted() {
     //1.防抖动 图片加载完成的事件监听
@@ -112,6 +116,10 @@ export default {
 
     //2.获取tabControl的offsetTop
     //所有的组件都有一个属性$el：用于获取组件中的元素
+
+
+    //3.手动代码点击一次
+    this.tabClick(0)
 
   },
   methods: {
@@ -137,15 +145,15 @@ export default {
           this.currentType = 'sell'
           break
       }
+      this.showGoods = this.goods[this.currentType].list
+
+      // 让两个TabControl的currentIndex保持一致
       this.$refs.tabControl1.currentIndex = index;
       this.$refs.tabControl2.currentIndex = index;
     },
-    backClick() {
-      this.$refs.scroll.scrollTo(0,0,500)
-    },
     contentScroll(position) {
       //1.判断BackTop是否显示
-      this.isShowBackTop = -(position.y) > 1000
+      this.listenShowBackTop(position)
 
       //2.决定tabControl是否吸顶（position：fixed）
       this.isTabFixed = -(position.y) > this.tabOffsetTop
@@ -216,11 +224,7 @@ export default {
     right: 0;
   }
 
-  .tab-control {
-    position: sticky;
-    top: 44px;
-    z-index: 9;
-  }
+
 
   /*.content {*/
   /*  height: calc(100% - 93px);*/

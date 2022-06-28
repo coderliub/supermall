@@ -74,5 +74,8 @@ export default {
 </script>
 
 <style scoped>
-
+  .wrapper {
+    width: 100%;
+    overflow: hidden;
+  }
 </style>

@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <nav-bar>
+    <nav-bar class="nav-bar">
       <div slot="left" class="back" @click="backClick">
         <img src="~assets/img/common/back.svg" alt="">
       </div>
@@ -11,7 +10,6 @@
         @click="titleClick(index)">{{item}}</div>
       </div>
     </nav-bar>
-  </div>
 </template>
 
 <script>
@@ -30,7 +28,8 @@ export default {
   },
   methods: {
     titleClick(index) {
-      this.currentIndex = index
+      this.currentIndex = index;
+      this.$emit('titleClick',index)
     },
     backClick() {
       this.$router.back()
@@ -56,4 +55,11 @@ export default {
   .back img {
     margin-top: 10px;
   }
+
+  .nav-bar {
+    background-color: #fff;
+    font-weight: normal;
+    position: fixed;
+  }
+
 </style>

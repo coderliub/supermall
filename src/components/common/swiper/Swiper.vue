@@ -51,7 +51,7 @@ export default {
 
       // 2.开启定时器
       this.startTimer();
-    }, 3000)
+    }, 1000)
   },
   methods: {
     /**
@@ -70,7 +70,7 @@ export default {
     /**
      * 滚动到正确的位置
      */
-    scrollContent: function (currentPosition) {
+    scrollContent(currentPosition) {
       // 0.设置正在滚动
       this.scrolling = true;
 
@@ -117,7 +117,7 @@ export default {
     /**
      * 操作DOM, 在DOM前后添加Slide
      */
-    handleDom: function () {
+    handleDom() {
       // 1.获取要操作的元素
       let swiperEl = document.querySelector('.swiper');
       let slidesEls = swiperEl.getElementsByClassName('slide');
