@@ -6,11 +6,11 @@
 
     <scroll class="content" ref="scroll"
     @scroll="contentScroll" :probe-type="3">
-        <ul>
-          <li v-for="item in $store.state.cartList">
-            {{item}}
-          </li>
-        </ul>
+<!--        <ul>-->
+<!--          <li v-for="item in $store.state.cartList">-->
+<!--            {{item}}-->
+<!--          </li>-->
+<!--        </ul>-->
       <detail-swiper :top-images="topImages"></detail-swiper>
       <detail-base-info :goods="goods"></detail-base-info>
       <detail-shop-info :shop="shop"></detail-shop-info>

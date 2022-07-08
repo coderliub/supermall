@@ -4,7 +4,7 @@ const obj = {}
 
 obj.install = function (Vue) {
   // document.body.appendChild(Toast.$el)
-  console.log(Toast.$el);
+  // console.log(Toast.$el);
   // Vue.prototype.$toast = Toast
 
   //1.创建组件构造器

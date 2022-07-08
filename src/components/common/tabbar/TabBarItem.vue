@@ -1,7 +1,7 @@
 <template>
   <div class="tab-bar-item" @click="itemClick">
-    <div v-if="!isActive"><slot name="item-icom"></slot></div>
-    <div v-else><slot name="item-icom-active"></slot></div>
+    <div v-if="!isActive"><slot name="item-icon"></slot></div>
+    <div v-else><slot name="item-icon-active"></slot></div>
     <div :style="activeStyle"><slot name="item-text"></slot></div>
     <img src="../../../assets/img/tabbar/home.svg" alt="">
     <div>首页</div>
@@ -25,7 +25,7 @@ export default {
   },
   computed: {
     isActive() {
-      // /home -> item1(/home) = true
+      // /home -> item1(/home) = true  this.$route是处于活跃的对象
       return this.$route.path.indexOf(this.path) !== -1
     },
     activeStyle() {

@@ -57,6 +57,7 @@ export default {
     }
   },
   methods: {
+    //调用scroll对象时，先判断有没有值
     scrollTo(x,y,time=300) {
       this.scroll && this.scroll.scrollTo(x,y,time)
     },
